@@ -1,0 +1,14 @@
+steps:
+  # Paso 1: instalar dependencias
+  - name: 'node:18'
+    entrypoint: npm
+    args: ['install']
+
+  # Paso 2: correr tests (escritos por los programadores)
+  - name: 'node:18'
+    entrypoint: npm
+    args: ['test']
+
+  # Paso 3: si pasó todo, desplegar en App Engine
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    args: ['gcloud', 'app', 'deploy', '--quiet']
